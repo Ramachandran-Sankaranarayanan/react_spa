@@ -2,7 +2,6 @@ import React , { Component } from 'react';
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Link from "@material-ui/core/Link";
 import Demo from "./selectState";
 import VehiclenumberText from "./vehiclenumber";
 import Purpose from "./purpose";
@@ -43,7 +42,7 @@ export class Rider extends Component {
 
   onChange= (e)=>{
     let val=e.target.value;
-    if(val==true || val == false){
+    if(val===true || val === false){
       val= !this.state[e.target.name];
     }
     this.setState({...this.state, [e.target.name]: val});
