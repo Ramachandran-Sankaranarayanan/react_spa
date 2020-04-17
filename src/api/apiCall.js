@@ -1,21 +1,24 @@
 
 import axios from 'axios';
 
-const apiUrl="localhost:8000";
+const apiRoot="http://dummy.restapiexample.com/";
 
 const contextUrl={
-    POST_RIDER:"/rider/submit",
+    POST_RIDER:"api/v1/create",
 }
 
 
 class ApiCall {
 
-    get = (key)=>{
-       return axios.get(contextUrl[key])
+    static get(key){
+       return axios.get(apiRoot+contextUrl[key])
     }
 
-    post = (key,data)=>{
-        return axios.post(contextUrl[key],data)
+   static post (key,data) {
+        return axios.post(apiRoot+contextUrl[key],data).then(res=>{ return res;}).catch(err=>{
+            alert("Connection Error");
+
+        })
     }
 
 }

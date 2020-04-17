@@ -7,18 +7,18 @@ import FormControl from "@material-ui/core/FormControl";
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 100
+    minWidth: 380
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
   }
 }));
 
-export default function BasicTextFields() {
+export default function BasicTextFields(props) {
   const classes = useStyles();
   return (
     <FormControl required className={classes.formControl}>
-      <TextField id="kilometer" label="Approx: KMS" />
+      <TextField id="description" name="description"  value={props.value} onChange={props.onChange.bind(this)} label="Purpose Description" />
       <FormHelperText>Required</FormHelperText>
     </FormControl>
   );

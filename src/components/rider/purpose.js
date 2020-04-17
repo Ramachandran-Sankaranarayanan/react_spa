@@ -6,23 +6,20 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 190
+    minWidth: 190,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
-export default function SimpleSelect() {
+export default function SimpleSelect(props) {
   const classes = useStyles();
-  const [purpose, setPurpose] = React.useState("");
-
-  const handleChange = event => {
-    setPurpose(event.target.value);
-  };
+  
+ 
 
   return (
     <div>
@@ -31,8 +28,9 @@ export default function SimpleSelect() {
         <Select
           labelId="purpose"
           id="purpose-required"
-          value={purpose}
-          onChange={handleChange}
+          name="purpose"
+          value={props.value}
+          onChange={props.onChange.bind(this)}
           className={classes.selectEmpty}
         >
           <MenuItem value="">

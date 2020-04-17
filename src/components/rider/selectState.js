@@ -16,12 +16,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SimpleSelect() {
+export default function SimpleSelect(props) {
   const classes = useStyles();
-  const [age, setStates] = React.useState("");
+
+
 
   const handleChange = event => {
-    setStates(event.target.value);
+    
+    let demog =props.value;
+    demog[event.target.name] = event.target.value;    
+    props.onChange({target:{name:'demog',value:demog}});    
+
   };
 
   return (
@@ -31,7 +36,8 @@ export default function SimpleSelect() {
         <Select
           labelId="source-state"
           id="source-state-required"
-          value={age}
+          value={props.value.s_state}
+          name="s_state"
           onChange={handleChange}
           className={classes.selectEmpty}
         >
@@ -51,7 +57,8 @@ export default function SimpleSelect() {
         <Select
           labelId="source-district"
           id="source-district-required"
-          value={age}
+          value={props.value.s_dist}
+          name="s_dist"
           onChange={handleChange}
           className={classes.selectEmpty}
         >
@@ -71,7 +78,8 @@ export default function SimpleSelect() {
         <Select
           labelId="destination-state"
           id="destination-state-required"
-          value={age}
+          value={props.value.d_state}
+          name="d_state"
           onChange={handleChange}
           className={classes.selectEmpty}
         >
@@ -91,7 +99,8 @@ export default function SimpleSelect() {
         <Select
           labelId="destination-district"
           id="destination-district-required"
-          value={age}
+          value={props.value.d_dist}
+          name="d_dist"
           onChange={handleChange}
           className={classes.selectEmpty}
         >

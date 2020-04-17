@@ -2,7 +2,8 @@ import { RIDER_POST } from '../actions/types';
 
 const initialState = {
 
-    data:{}
+    data:{},
+    status:null
 
 };
 
@@ -11,7 +12,8 @@ export default function(state = initialState, action) {
     case RIDER_POST:
       return {
         ...state,
-        data: action.payload
+        data: action.payload.data,
+        status:action.payload.status
       };    
     default:
       return state;

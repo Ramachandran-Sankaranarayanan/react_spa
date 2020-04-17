@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from './store';
 
-import Rider from "./Rider";
-import RiderList from "./riderlist";
-import Signin from "./signin";
-import Signup from "./signup";
+import Rider from "./components/rider/Rider";
+import RiderList from "./components/rider/riderlist";
+import Signin from "./components/rider/signin";
+import Signup from "./components/rider/signup";
 class App extends Component {
   render() {
     return (

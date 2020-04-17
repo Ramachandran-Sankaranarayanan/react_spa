@@ -14,11 +14,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function BasicTextFields() {
+export default function BasicTextFields(props) {
   const classes = useStyles();
   return (
     <FormControl required className={classes.formControl}>
-      <TextField id="vehicle-number" label="Vehicle Number" />
+      <TextField id="vehicle-number" label="Vehicle Number"  name="vehicleNumber"  value={props.value} onChange={props.onChange.bind(this)} />
       <FormHelperText>Required</FormHelperText>
       </FormControl>   
 

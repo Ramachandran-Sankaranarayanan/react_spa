@@ -4,26 +4,19 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 190
+    minWidth: 190,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
-export default function SwitchLabels() {
+export default function SwitchLabels(props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true
-  });
 
-  const handleChange = event => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
 
   return (
     <FormGroup row>
@@ -32,9 +25,9 @@ export default function SwitchLabels() {
         className={classes.formControl}
         control={
           <Switch
-            checked={state.checkedB}
-            onChange={handleChange}
-            name="checkedB"
+            name="interstate"
+            checked={props.value}
+            onChange={props.onChange.bind(this)}
             color="primary"
           />
         }
