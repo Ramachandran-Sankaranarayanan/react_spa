@@ -19,8 +19,6 @@ const useStyles = makeStyles(theme => ({
 export default function SimpleSelect(props) {
   const classes = useStyles();
 
-
-
   const handleChange = event => {
     
     let demog =props.value;
@@ -29,6 +27,8 @@ export default function SimpleSelect(props) {
 
   };
 
+  const isInterState=props.interstate ;
+  console.log(isInterState,"STTE");
   return (
     <div>
       <FormControl required className={classes.formControl}>
@@ -73,7 +73,7 @@ export default function SimpleSelect(props) {
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>
-      <FormControl required className={classes.formControl}>
+      { isInterState && <FormControl required className={classes.formControl}>
         <InputLabel id="destination-state">Destination State</InputLabel>
         <Select
           labelId="destination-state"
@@ -93,7 +93,7 @@ export default function SimpleSelect(props) {
           <MenuItem value={50}>Telengana</MenuItem>
         </Select>
         <FormHelperText>Required</FormHelperText>
-      </FormControl>
+      </FormControl>}
       <FormControl required className={classes.formControl}>
         <InputLabel id="destination-district">Destination District</InputLabel>
         <Select

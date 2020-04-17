@@ -22,7 +22,6 @@ export default function SimpleSelect(props) {
  
 
   return (
-    <div>
       <FormControl required className={classes.formControl}>
         <InputLabel id="purpose">Purpose</InputLabel>
         <Select
@@ -42,6 +41,5 @@ export default function SimpleSelect(props) {
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>
-    </div>
   );
 }

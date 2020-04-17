@@ -15,7 +15,7 @@ export default function ContainedButtons(props) {
 
   return (
     <div className={classes.root}>
-      <Button variant="contained">Cancel</Button>
+      <Button variant="contained" color="secondary">Cancel</Button>
       <Button onClick={props.onClick.bind(this)} variant="contained" color="primary">
         Save
       </Button>

@@ -6,7 +6,6 @@ import store from './store';
 import Rider from "./components/rider/Rider";
 import RiderList from "./components/rider/riderlist";
 import Signin from "./components/rider/signin";
-import Signup from "./components/rider/signup";
 import Navigation from './components/Navigation';
 
 class App extends Component {
@@ -14,8 +13,9 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <div>
-            <Navigation/>
+          <Navigation/>
+          <div style={{padding:"0 3rem"}}>
+            
             <Switch>
               <Route path="/rider">
                 <Rider />
@@ -26,9 +26,7 @@ class App extends Component {
               <Route path="/signin">
                 <Signin />
               </Route>
-              <Route path="/signup">
-                <Signup />
-              </Route>
+              
             </Switch>
           </div>
         </BrowserRouter>
