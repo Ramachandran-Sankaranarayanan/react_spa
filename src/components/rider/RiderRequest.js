@@ -64,7 +64,7 @@ const LatestOrders = props => {
     >
       <CardHeader
        
-        title="Rider List"
+        title="Ride Requests"
       />
       <Divider />
       <CardContent className={classes.content}>
@@ -144,8 +144,8 @@ const LatestOrders = props => {
   );
 };
 
-RiderRequests.propTypes = {
+LatestOrders.propTypes = {
   className: PropTypes.string
 };
 
-export default RiderRequests;
+export default LatestOrders;

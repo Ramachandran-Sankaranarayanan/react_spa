@@ -9,8 +9,9 @@ const Navigation = () => {
        <strong className="titleText">Tramd19</strong>
         <div className="menus">
             <NavLink to="/rider" className="menuItem">RiderForm</NavLink>
-            <NavLink to="/riderList" className="menuItem">Dasboard</NavLink>
+            <NavLink to="/riderList" className="menuItem">RiderList</NavLink>
             <NavLink to="/signin" className="menuItem">OFFICIAL Login</NavLink>
+            <NavLink to="/dashboard" className="menuItem">OFFICIAL Dashboard</NavLink>
 
         </div>
          
