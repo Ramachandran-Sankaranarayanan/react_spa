@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-const apiRoot="http://dummy.restapiexample.com/",apiRoot="http://localhost:8080/";
+const apiRoot="http://localhost:8080/";
 
 const contextUrl={
     POST_RIDER:"api/v1/create",
