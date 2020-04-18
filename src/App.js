@@ -7,6 +7,7 @@ import Rider from "./components/rider/Rider";
 import RiderList from "./components/rider/riderlist";
 import Signin from "./components/rider/signin";
 import Navigation from './components/Navigation';
+import Dashboard from './components/official/dashboard';
 
 class App extends Component {
   render() {
@@ -25,6 +26,9 @@ class App extends Component {
               </Route>
               <Route path="/signin">
                 <Signin />
+              </Route>
+              <Route path="/dashboard">
+                <Dashboard/>
               </Route>
               
             </Switch>
