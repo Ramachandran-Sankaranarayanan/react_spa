@@ -8,6 +8,7 @@ import RiderList from "./components/rider/riderlist";
 import Signin from "./components/rider/signin";
 import Navigation from './components/Navigation';
 import Dashboard from './components/official/dashboard';
+import VerifyRide from "./components/rider/verifyRide";
 
 class App extends Component {
   render() {
@@ -29,6 +30,9 @@ class App extends Component {
               </Route>
               <Route path="/dashboard">
                 <Dashboard/>
+              </Route>
+              <Route path="/verify_ride">
+                <VerifyRide/>
               </Route>
               
             </Switch>

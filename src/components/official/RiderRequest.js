@@ -21,7 +21,6 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-import mockData from './data';
 import StatusBullet from './StatusBullet';
 
 const useStyles = makeStyles(theme => ({
@@ -54,8 +53,8 @@ const LatestOrders = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
-
-  const [orders] = useState(mockData);
+console.log(props.onClickView);
+  let rides=[0,1,2];//props.rides;
 
   return (
     <Card
@@ -64,7 +63,7 @@ const LatestOrders = props => {
     >
       <CardHeader
        
-        title="Ride Requests"
+        title="RIDE REQUESTS"
       />
       <Divider />
       <CardContent className={classes.content}>
@@ -73,58 +72,61 @@ const LatestOrders = props => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Order Ref</TableCell>
-                  <TableCell>Rider</TableCell>
+                  <TableCell>Source State/ District</TableCell>
+                  <TableCell>Destination State/ District</TableCell>
                   <TableCell sortDirection="desc">
-                    <Tooltip
-                      enterDelay={300}
-                      title="Sort"
-                    >
-                      <TableSortLabel
-                        active
-                        direction="desc"
-                      >
-                        Date
-                      </TableSortLabel>
-                    </Tooltip>
+                  Requested Date                      
                   </TableCell>
                   <TableCell>Status</TableCell>
+                  <TableCell>Purpose</TableCell>
+                  <TableCell>Approx. KMS</TableCell>
+                  <TableCell>Vechicle Number</TableCell>
+                  <TableCell>Mobile Number</TableCell>
                   <TableCell></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {orders.map(order => (
+                {rides.map(ride => (
                   <TableRow
                     hover
-                    key={order.id}
+                    key={ride}
                   >
-                    <TableCell>{order.ref}</TableCell>
-                    <TableCell>{order.customer.name}</TableCell>
+                    <TableCell>KARNATAKA/BANGLORE</TableCell>
+                    <TableCell>KERALA/KANNAUR</TableCell>
                     <TableCell>
-                      {moment(order.createdAt).format('DD/MM/YYYY')}
+                      {moment(new Date()).format('DD/MM/YYYY')}
                     </TableCell>
                     
                     <TableCell>
                       <div className={classes.statusContainer}>
                         <StatusBullet
                           className={classes.status}
-                          color={statusColors[order.status]}
+                          color={statusColors["pending"]}
                           size="sm"
                         />
-                        {order.status}
+                        pending
                       </div>
                     </TableCell>
+                    <TableCell>Job</TableCell>
+                    <TableCell>300</TableCell>
+                    <TableCell>KA 08 B 8899</TableCell>
+                    <TableCell>9876543210</TableCell>
+                    
                     <TableCell>
                     <Button
                        color="primary"
                         size="small"
                         variant="outlined"
+                        onClick={props.onClickView.bind(this)}
                         >
                       View
                    </Button>
+                   
                     </TableCell>
                   </TableRow>
+                  
                 ))}
+                
               </TableBody>
             </Table>
           </div>

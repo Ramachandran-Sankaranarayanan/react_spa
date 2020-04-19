@@ -19,7 +19,7 @@ export class Rider extends Component {
 
   state={
     description:"",
-    interstate:false,
+    interstate:true,
     vehicleNumber:"",
     purpose:"",
     mobile:"",
@@ -42,9 +42,10 @@ export class Rider extends Component {
 
   onChange= (e)=>{
     let val=e.target.value;
-    if(val===true || val === false){
-      val= !this.state[e.target.name];
-    }
+    // if(val===true || val === false){
+    //   val= val==true;
+    // }
+    console.log(e);
     this.setState({...this.state, [e.target.name]: val});
   }
 
@@ -60,7 +61,7 @@ export class Rider extends Component {
         <Typography variant="h4" component="h1" gutterBottom>
           Rider Form
         </Typography>
-        <InterState value={this.state.interstate} onChange={this.onChange.bind(this)}/>
+        {/*<InterState value={this.state.interstate} onChange={this.onChange.bind(this)}/>*/}
         <Demo value={this.state.demog} interstate={this.state.interstate} onChange={this.onChange.bind(this)}  />
         <VehiclenumberText value={this.state.vehicleNumber} onChange={this.onChange.bind(this)}  />
         <Purpose value={this.state.purpose}  onChange={this.onChange.bind(this)} />
