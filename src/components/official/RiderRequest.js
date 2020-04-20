@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -16,9 +16,7 @@ import {
   TableBody,
   TableCell,
   TableHead,
-  TableRow,
-  Tooltip,
-  TableSortLabel
+  TableRow
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
@@ -45,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const statusColors = {
-  delivered: 'success',
+  approved: 'success',
   pending: 'info',
   refunded: 'danger'
 };
@@ -55,7 +53,7 @@ const LatestOrders = props => {
 
   const classes = useStyles();
 console.log(props.onClickView);
-  let rides=[0,1,2];//props.rides;
+  let rides=props.riders;
 
   return (
     <Card
@@ -91,27 +89,27 @@ console.log(props.onClickView);
                   <TableRow
                     hover
                     key={ride}
-                  >
-                    <TableCell>KARNATAKA/BANGLORE</TableCell>
-                    <TableCell>KERALA/KANNAUR</TableCell>
+                  >            
+                    <TableCell>{ride.sourceState}/{ride.sourceDistrict}</TableCell>
+                    <TableCell>{ride.destinationState}/{ride.destinationDistrict}</TableCell>
                     <TableCell>
-                      {moment(new Date()).format('DD/MM/YYYY')}
+                      {moment(new Date(ride.requestedDate)).format('DD/MM/YYYY')}
                     </TableCell>
                     
                     <TableCell>
                       <div className={classes.statusContainer}>
                         <StatusBullet
                           className={classes.status}
-                          color={statusColors["pending"]}
+                          color={statusColors[ride.status.toString().toLowerCase()]}
                           size="sm"
                         />
-                        pending
+                        {ride.status}
                       </div>
                     </TableCell>
-                    <TableCell>Job</TableCell>
-                    <TableCell>300</TableCell>
-                    <TableCell>KA 08 B 8899</TableCell>
-                    <TableCell>9876543210</TableCell>
+                    <TableCell>{ride.purpose}</TableCell>
+                    <TableCell>{ride.approxKms}</TableCell>
+                    <TableCell>{ride.vehicleNumber}</TableCell>
+                    <TableCell>{ride.mobileNum}</TableCell>
                     
                     <TableCell>
                     <Button

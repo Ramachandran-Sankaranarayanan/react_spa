@@ -75,7 +75,7 @@ export class Rider extends Component {
 
   render() {
     return (
-      <Container maxWidth="lg">
+      <Container maxWidth="sm">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
           Rider Form
@@ -87,6 +87,7 @@ export class Rider extends Component {
         <MobileNumber value={this.state.mobileNum} onChange={this.onChange.bind(this)} />
         <KiloMeter value={this.state.approxKms} onChange={this.onChange.bind(this)}  />
         <Description value={this.state.purposeDesc} onChange={this.onChange.bind(this)} />
+
         <SaveButton onClick={this.onSubmit.bind(this)} />
       </Box>
     </Container>

@@ -9,4 +9,8 @@ export const login=(data)=>{
    return ApiCall.post("AUTHENTICATE", data);
 }
 
+export const  getRiderRequestByDate = (date)=>{
+   return ApiCall.getWithData("OFFICIAL","/"+date);
+
+}
 
