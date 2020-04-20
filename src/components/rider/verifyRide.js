@@ -21,8 +21,7 @@ export class VerifyRide extends Component {
         }
     }
     verify=()=>{
-        verifyRide(this.state.vehicle).then((res)=>{
-           
+        verifyRide(this.state.vehicle).then((res)=>{           
             this.setState({...this.state, details:true, detailsData:res.data } );
         });        
     }
