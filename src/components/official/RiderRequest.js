@@ -4,6 +4,7 @@ import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 import {
   Card,
   CardActions,

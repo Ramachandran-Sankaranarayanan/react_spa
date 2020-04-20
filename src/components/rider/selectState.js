@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-
+import {statesMaster} from '../../model/master';
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -44,11 +44,11 @@ export default function SimpleSelect(props) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Kerala</MenuItem>
-          <MenuItem value={20}>Tamil Nadu</MenuItem>
-          <MenuItem value={30}>Karnadaka</MenuItem>
-          <MenuItem value={40}>Andra</MenuItem>
-          <MenuItem value={50}>Telengana</MenuItem>
+         {Object.keys(statesMaster).map(st=>{
+           return (<MenuItem value={st}>
+           {st}
+         </MenuItem>);
+         })}
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>
@@ -65,11 +65,11 @@ export default function SimpleSelect(props) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Kerala</MenuItem>
-          <MenuItem value={20}>Tamil Nadu</MenuItem>
-          <MenuItem value={30}>Karnadaka</MenuItem>
-          <MenuItem value={40}>Andra</MenuItem>
-          <MenuItem value={50}>Telengana</MenuItem>
+          {statesMaster[props.value['s_state']] && statesMaster[props.value['s_state']].map(st=>{
+            return (<MenuItem value={st}>
+            {st}
+          </MenuItem>);
+          })}
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>
@@ -86,11 +86,11 @@ export default function SimpleSelect(props) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Kerala</MenuItem>
-          <MenuItem value={20}>Tamil Nadu</MenuItem>
-          <MenuItem value={30}>Karnadaka</MenuItem>
-          <MenuItem value={40}>Andra</MenuItem>
-          <MenuItem value={50}>Telengana</MenuItem>
+          {Object.keys(statesMaster).map(st=>{
+            return (<MenuItem value={st}>
+            {st}
+          </MenuItem>);
+          })}
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>}
@@ -107,11 +107,11 @@ export default function SimpleSelect(props) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Kerala</MenuItem>
-          <MenuItem value={20}>Tamil Nadu</MenuItem>
-          <MenuItem value={30}>Karnadaka</MenuItem>
-          <MenuItem value={40}>Andra</MenuItem>
-          <MenuItem value={50}>Telengana</MenuItem>
+          {statesMaster[props.value['d_state']] && statesMaster[props.value['d_state']].map(st=>{
+            return (<MenuItem value={st}>
+            {st}
+          </MenuItem>);
+          })}
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>

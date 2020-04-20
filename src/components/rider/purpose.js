@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import {purposeMaster} from '../../model/master';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -35,9 +36,9 @@ export default function SimpleSelect(props) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Job</MenuItem>
-          <MenuItem value={20}>Market</MenuItem>
-          <MenuItem value={30}>Medical</MenuItem>
+          {purposeMaster.map((pu)=>{
+            return (<MenuItem value={pu}>{pu}</MenuItem>);
+          })}
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>
