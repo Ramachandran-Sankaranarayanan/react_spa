@@ -18,7 +18,7 @@ export default function BasicTextFields(props) {
   const classes = useStyles();
   return (
     <FormControl required className={classes.formControl}>
-      <TextField multiline id="description" name="description" value={props.value} onChange={props.onChange.bind(this)} label="Purpose Description" />
+      <TextField multiline id="description" name="purposeDesc" value={props.value} onChange={props.onChange.bind(this)} label="Purpose Description" />
       <FormHelperText>Required</FormHelperText>
     </FormControl>
   );

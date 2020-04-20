@@ -18,7 +18,7 @@ export default function BasicTextFields(props) {
   const classes = useStyles();
   return (
     <FormControl required className={classes.formControl}>
-      <TextField id="kilometer" label="Approx: KMS"  name="kilometer"  value={props.value} onChange={props.onChange.bind(this)}/>
+      <TextField id="kilometer" label="Approx: KMS"  name="approxKms"  value={props.value} onChange={props.onChange.bind(this)}/>
       <FormHelperText>Required</FormHelperText>
     </FormControl>
   );
