@@ -6,14 +6,11 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 
-export class Calendar extends Component {
-  state = {
-    selectedDate: new Date("2014-08-18T21:11:54"),
-  };
 
-  handleDateChange = (date) => {
-    this.setState({ selectedDate: date });
-  };
+
+export class Calendar extends Component {
+  
+
   render() {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -24,8 +21,8 @@ export class Calendar extends Component {
           margin="normal"
           id="date-picker-inline"
           label="Select a Date"
-          value={this.state.selectedDate}
-          onChange={this.handleDateChange.bind(this)}
+          value={this.props.value}
+          onChange={this.props.onChange.bind(this)}
           KeyboardButtonProps={{
             "aria-label": "change date",
           }}

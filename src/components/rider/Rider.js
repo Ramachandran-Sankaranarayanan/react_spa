@@ -19,7 +19,7 @@ export class Rider extends Component {
 
   state={
     description:"",
-    interstate:true,
+    interstate:false,
     vehicleNumber:"",
     purpose:"",
     mobile:"",
@@ -42,10 +42,9 @@ export class Rider extends Component {
 
   onChange= (e)=>{
     let val=e.target.value;
-    // if(val===true || val === false){
-    //   val= val==true;
-    // }
-    console.log(e);
+    if(val===true || val === false){
+      val= !this.state[e.target.name];
+    }
     this.setState({...this.state, [e.target.name]: val});
   }
 
@@ -56,15 +55,15 @@ export class Rider extends Component {
 
   render() {
     return (
-      <Container maxWidth="lg">
+      <Container maxWidth="sm">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
           Rider Form
         </Typography>
-        {/*<InterState value={this.state.interstate} onChange={this.onChange.bind(this)}/>*/}
-        <Demo value={this.state.demog} interstate={this.state.interstate} onChange={this.onChange.bind(this)}  />
+        <InterState value={this.state.interstate} onChange={this.onChange.bind(this)}/>
+        <Demo value={this.state.demog} onChange={this.onChange.bind(this)}  />
         <VehiclenumberText value={this.state.vehicleNumber} onChange={this.onChange.bind(this)}  />
-        <Purpose value={this.state.purpose}  onChange={this.onChange.bind(this)} />
+        <Purpose value={this.state.purpose} onChange={this.onChange.bind(this)} />
         <MobileNumber value={this.state.mobile} onChange={this.onChange.bind(this)} />
         <KiloMeter value={this.state.kilometer} onChange={this.onChange.bind(this)}  />
         <Description value={this.state.description} onChange={this.onChange.bind(this)} />

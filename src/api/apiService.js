@@ -7,4 +7,8 @@ export const verifyRide=(vehicle)=>{
 
 }
 
+export const  getRiderRequestByDate = (date)=>{
+   return ApiCall.getWithData("OFFICIAL","/"+date);
+
+}
 
