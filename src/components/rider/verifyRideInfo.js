@@ -42,7 +42,7 @@ const styles = {
     }
   }
 
-export default function VerifyRideInfo() {
+export default function VerifyRideInfo(props) {
   const classes = useStyles();
 
   return (
@@ -51,24 +51,24 @@ export default function VerifyRideInfo() {
         <Grid container alignItems="center">
           <Grid item xs>
             <Typography gutterBottom variant="h4">
-              BANGLORE <ArrowForwardIcon/> KANNUR
+              {props.value.source.toUpperCase()} <ArrowForwardIcon/> {props.value.dest.toUpperCase()}
             </Typography>
           </Grid>
           <Grid item>
           
             <Typography  gutterBottom variant="h6">
-            <StyleRoot> <div style={styles.anim}>APPROVED</div></StyleRoot>
+            <StyleRoot> <div style={styles.anim}>{props.value.status}</div></StyleRoot>
             </Typography>
           </Grid>
         </Grid>
         <Typography color="textSecondary" variant="h6" className={classes.slot}>
-        <Chip className={classes.chip} color="primary" label="Slot" /> <EventIcon/> 14/05/2020 <TimerIcon/> 15:00 <NavigateNextIcon/> 20:00
+        <Chip className={classes.chip} color="primary" label="Slot" /> <EventIcon/> {props.value.date}<TimerIcon/> {props.value.fromTime} <NavigateNextIcon/> {props.value.toTime}
         </Typography>
       </div>
       <Divider variant="middle" />
       
       <div className={classes.section3}>
-        <Button color="primary">Print Authorization</Button>
+        {props.value.status =='APPROVED' && <Button color="primary">Print Authorization</Button>}
       </div>
     </div>
   );
