@@ -36,8 +36,8 @@ export default function SimpleSelect(props) {
         <Select
           labelId="source-state"
           id="source-state-required"
-          value={props.value.s_state}
-          name="s_state"
+          value={props.value.sourceState}
+          name="sourceState"
           onChange={handleChange}
           className={classes.selectEmpty}
         >
@@ -57,15 +57,15 @@ export default function SimpleSelect(props) {
         <Select
           labelId="source-district"
           id="source-district-required"
-          value={props.value.s_dist}
-          name="s_dist"
+          value={props.value.sourceDistrict}
+          name="sourceDistrict"
           onChange={handleChange}
           className={classes.selectEmpty}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {statesMaster[props.value['s_state']] && statesMaster[props.value['s_state']].map(st=>{
+          {statesMaster[props.value['sourceState']] && statesMaster[props.value['sourceState']].map(st=>{
             return (<MenuItem value={st}>
             {st}
           </MenuItem>);
@@ -78,8 +78,8 @@ export default function SimpleSelect(props) {
         <Select
           labelId="destination-state"
           id="destination-state-required"
-          value={props.value.d_state}
-          name="d_state"
+          value={props.value.destinationState}
+          name="destinationState"
           onChange={handleChange}
           className={classes.selectEmpty}
         >
@@ -99,15 +99,15 @@ export default function SimpleSelect(props) {
         <Select
           labelId="destination-district"
           id="destination-district-required"
-          value={props.value.d_dist}
-          name="d_dist"
+          value={props.value.destinationDistrict}
+          name="destinationDistrict"
           onChange={handleChange}
           className={classes.selectEmpty}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {statesMaster[props.value['d_state']] && statesMaster[props.value['d_state']].map(st=>{
+          {statesMaster[props.value['destinationState']] && statesMaster[props.value['destinationState']].map(st=>{
             return (<MenuItem value={st}>
             {st}
           </MenuItem>);

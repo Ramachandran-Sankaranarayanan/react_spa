@@ -18,20 +18,21 @@ import {postRider}  from '../../actions/riderAction';
 export class Rider extends Component {
 
   state={
-    description:"",
-    interstate:false,
+    interState:true,
     vehicleNumber:"",
     purpose:"",
-    mobile:"",
-    kilometer:"",
+    mobileNum:"",
+    approxKms:"",
     demog:{
-      s_state:"",
-      s_dist:"",
-      d_state:"",
-      d_dist:""
-    }
-
+      sourceState:"",
+      sourceDistrict:"",
+      destinationState:"",
+      destinationDistrict:""
+    },
+    purposeDesc:"",
+    requestedDate:new Date()
   }
+
 
   componentWillReceiveProps(next){
     console.log(next);
@@ -42,14 +43,33 @@ export class Rider extends Component {
 
   onChange= (e)=>{
     let val=e.target.value;
-    if(val===true || val === false){
-      val= !this.state[e.target.name];
-    }
     this.setState({...this.state, [e.target.name]: val});
   }
 
   onSubmit=()=>{
-    this.props.postRider(this.state);
+    let val=this.state;
+    let keys=Object.keys(val);
+    for(var i=0;i<keys.length;i++){
+      var ky=keys[i];
+      var itm=val[ky];
+      if(itm=="" || itm==null){
+        alert("All fields are mandatory");
+        return;
+      }else if(ky=="vehicleNumber" && !itm.match("[A-Za-z]{2}[0-9]{2}[A-Za-z]{0,3}[0-9]{1,4}")){
+        alert("Enter Valid Vehicle Number");
+        return;
+      }else if(ky=="mobileNum" && !itm.match("[0-9]{10,11}")){
+        alert("Enter Valid Mobile Number");
+        return;
+      }else if(ky=="approxKms" && !itm.match("[0-9]{1,4}")){
+        alert("Enter Valid Kms < 9999");
+        return;
+      }else if(ky=="purposeDesc" && itm.length<30){
+        alert("Purpose Description should be atleast 50 Chars");
+        return;
+      }
+    }
+    this.props.postRider({...this.state,...this.state.demog});
   }
 
 
@@ -60,13 +80,14 @@ export class Rider extends Component {
         <Typography variant="h4" component="h1" gutterBottom>
           Rider Form
         </Typography>
-        <InterState value={this.state.interstate} onChange={this.onChange.bind(this)}/>
-        <Demo value={this.state.demog} onChange={this.onChange.bind(this)}  />
+        {/*<InterState value={this.state.interstate} onChange={this.onChange.bind(this)}/>*/}
+        <Demo value={this.state.demog} interstate={this.state.interState} onChange={this.onChange.bind(this)}  />
         <VehiclenumberText value={this.state.vehicleNumber} onChange={this.onChange.bind(this)}  />
-        <Purpose value={this.state.purpose} onChange={this.onChange.bind(this)} />
-        <MobileNumber value={this.state.mobile} onChange={this.onChange.bind(this)} />
-        <KiloMeter value={this.state.kilometer} onChange={this.onChange.bind(this)}  />
-        <Description value={this.state.description} onChange={this.onChange.bind(this)} />
+        <Purpose value={this.state.purpose}  onChange={this.onChange.bind(this)} />
+        <MobileNumber value={this.state.mobileNum} onChange={this.onChange.bind(this)} />
+        <KiloMeter value={this.state.approxKms} onChange={this.onChange.bind(this)}  />
+        <Description value={this.state.purposeDesc} onChange={this.onChange.bind(this)} />
+
         <SaveButton onClick={this.onSubmit.bind(this)} />
       </Box>
     </Container>

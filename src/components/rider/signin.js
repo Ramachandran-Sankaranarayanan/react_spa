@@ -7,6 +7,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {login} from '../../api/apiService';
+import  { Redirect } from 'react-router-dom';
 
 
 const useStyles = theme => ({
@@ -31,9 +33,34 @@ const useStyles = theme => ({
 
 
 class signin extends Component {
+
+  state={
+    username:"",
+    password:"",
+    error:"",
+    redirect:false
+  }
   
+  onChange=(e)=>{
+    this.setState({...this.state,[e.target.name]:e.target.value});
+  }
+
+  click=()=>{
+    login({username:this.state.username,password:this.state.password})
+    .then(res=>{  
+      if(res && res.data){
+        localStorage.setItem("token",res.data.token);
+        this.props.changeAuth(true);
+        this.setState({...this.state,redirect:true})
+      }
+    })
+  }
+
   render() {
     const classes = this.props.classes;
+    if(this.state.redirect){
+      return <Redirect to='/dashboard'  />
+    }
     return (
       <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -44,7 +71,7 @@ class signin extends Component {
         <Typography component="h1" variant="h4">
         <small>OFFICIAL</small> <strong>LOGIN</strong>
         </Typography>
-        <form className={classes.form} noValidate>
+        <div className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -52,9 +79,10 @@ class signin extends Component {
             fullWidth
             id="email"
             label="Email Address"
-            name="email"
+            name="username"
             autoComplete="email"
             autoFocus
+            onChange={this.onChange.bind(this)}
           />
           <TextField
             variant="outlined"
@@ -66,6 +94,7 @@ class signin extends Component {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={this.onChange.bind(this)}
           />
         
           <Button
@@ -74,11 +103,12 @@ class signin extends Component {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={this.click.bind(this)}
           >
             Login
           </Button>
          
-        </form>
+        </div>
       </div>
      
     </Container>
