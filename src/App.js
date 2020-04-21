@@ -9,6 +9,7 @@ import Navigation from './components/Navigation';
 import Dashboard from './components/official/dashboard';
 import VerifyRide from "./components/rider/verifyRide";
 import  { Redirect } from 'react-router-dom'
+import Landing from './landing';
 
 class App extends Component {
 
@@ -29,6 +30,9 @@ class App extends Component {
           <div style={{padding:"0 3rem"}}>
             
             <Switch>
+              <Route path="/" exact>
+                <Landing/>
+              </Route>
               <Route path="/rider">
                 <Rider />
               </Route>
