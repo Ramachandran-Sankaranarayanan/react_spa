@@ -117,6 +117,7 @@ console.log(props.onClickView);
                         size="small"
                         variant="outlined"
                         onClick={props.onClickView.bind(this)}
+                        rider={ride}
                         >
                       View
                    </Button>

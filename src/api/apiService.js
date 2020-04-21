@@ -11,4 +11,8 @@ export const  getRiderRequestByDate = (date)=>{
    return ApiCall.getWithData("OFFICIAL","/"+date);
 
 }
+export const postRiderStatus = (data)=>{
+   return ApiCall.post("RIDER_STATUS","/"+data);
+
+}
 
