@@ -65,7 +65,10 @@ console.log(props.onClickView);
         title="RIDE REQUESTS"
       />
       <Divider />
-      <CardContent className={classes.content}>
+      {rides.length==0 && <CardContent className={classes.content}>
+      <h5 style={{marginLeft:"1rem"}}> No Ride Requests for the Day</h5>
+      </CardContent> }
+      {rides.length>0 && <CardContent className={classes.content}>
         <PerfectScrollbar>
           <div className={classes.inner}>
             <Table>
@@ -85,7 +88,7 @@ console.log(props.onClickView);
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rides.map(ride => (
+                {rides.map((ride,indx) => (
                   <TableRow
                     hover
                     key={ride}
@@ -100,10 +103,10 @@ console.log(props.onClickView);
                       <div className={classes.statusContainer}>
                         <StatusBullet
                           className={classes.status}
-                          color={statusColors[ride.status.toString().toLowerCase()]}
+                          color={statusColors[ride.riderStatus?ride.riderStatus.toLowerCase():"pending"]}
                           size="sm"
                         />
-                        {ride.status}
+                        {ride.riderStatus}
                       </div>
                     </TableCell>
                     <TableCell>{ride.purpose}</TableCell>
@@ -116,7 +119,7 @@ console.log(props.onClickView);
                        color="primary"
                         size="small"
                         variant="outlined"
-                        onClick={props.onClickView.bind(this)}
+                        onClick={props.onClickView.bind(this,ride,indx)}
                         >
                       View
                    </Button>
@@ -130,7 +133,7 @@ console.log(props.onClickView);
             </Table>
           </div>
         </PerfectScrollbar>
-      </CardContent>
+      </CardContent>}
       <Divider />
       <CardActions className={classes.actions}>
         <Button

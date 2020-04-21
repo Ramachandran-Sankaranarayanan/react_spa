@@ -35,8 +35,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Statitics() {
+export default function Statitics(props) {
   const classes = useStyles();
+
+  const values =[
+      {key:"Total",value:props.value["Total"] || 0},
+      {key:"Approved",value:props.value["Approved"] || 0},
+      {key:"Pending",value:props.value["Pending"] || 0},
+      {key:"Rejected",value:props.value["Rejected"] || 0}
+  ];
+
 
   return (
     <div>
@@ -44,11 +52,7 @@ export default function Statitics() {
       <Grid container className={classes.root} spacing={2}>
         <Grid item xs={12}>
           <Grid container justify="center" spacing={2}>
-            {[
-              { key: "Applied", value: 100 },
-              { key: "Approved", value: 80 },
-              { key: "Pending", value: 10 },
-            ].map((value) => (
+            {values.map((value) => (
               <Grid key={value} item>
                 <div className={classes.paper}>
                   <Typography

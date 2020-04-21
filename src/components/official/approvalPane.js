@@ -31,8 +31,8 @@ export class ApprovalPane extends Component {
     }
 
     render() {
-        let obj=this.state.data;
-        console.log(this.state);
+        let val=this.props.value;
+        //console.log(this.state);
         
         return (
             <div>
@@ -40,19 +40,19 @@ export class ApprovalPane extends Component {
             <Box color="text.primary" className="paneBox">
                 <div className="paneClose" ><Button color="secondary" onClick={this.props.onClickClose.bind(this)}><CloseIcon/></Button></div>
                 <div className="paneItems">
-                    <Typography title="Travel Direction" className="paneElement" variant="h6"> KARNATAKA | BANGLORE <ArrowForwardIcon/> KERALA | KANNUR  </Typography>
-                    <Typography title="Vehicle Number" className="paneElement" variant="h6"> <DriveEtaIcon/> KA 08 B 9988  </Typography>
-                    <Typography title="Mobile Number" className="paneElement" variant="h6"> <PhoneAndroidIcon/> 9876543210  </Typography>
-                    <Typography title="Approx. Kms" className="paneElement" variant="h6"> <TimelineIcon/> 300KM  </Typography>
-                    <Typography title="Preffered Date" className="paneElement" variant="h6"> <EventIcon/> 24/05/2020  </Typography>
-                    <Typography title="Purpose" className="paneElement" variant="h6"> <NotListedLocationIcon/> Job  </Typography>
-                    <div title="Purpose Description" className="paneElDesc">hsjfkshfkshfkshfkskfsfhkjshfkhsk skfhsfj sfshfhskfjh sjfsj ksjfksj hsjfkshfkshfkshfkskfsfhkjshfkhsk skfhsfj sfshfhskfjh sjfsj ksjfksj hsjfkshfkshfkshfkskfsfhkjshfkhsk skfhsfj sfshfhskfjh sjfsj ksjfksj hsjfkshfkshfkshfkskfsfhkjshfkhsk skfhsfj sfshfhskfjh sjfsj ksjfksj
+                    <Typography title="Travel Direction" className="paneElement" variant="h6"> {val.sourceDistrict} | {val.sourceDistrict} <ArrowForwardIcon/> {val.destinationState} | {val.destinationDistrict}  </Typography>
+                    <Typography title="Vehicle Number" className="paneElement" variant="h6"> <DriveEtaIcon/> {val.vehicleNumber}  </Typography>
+                    <Typography title="Mobile Number" className="paneElement" variant="h6"> <PhoneAndroidIcon/> {val.mobileNum}  </Typography>
+                    <Typography title="Approx. Kms" className="paneElement" variant="h6"> <TimelineIcon/> {val.approxKms}  </Typography>
+                    <Typography title="Preffered Date" className="paneElement" variant="h6"> <EventIcon/> {val.requestedDate} </Typography>
+                    <Typography title="Purpose" className="paneElement" variant="h6"> <NotListedLocationIcon/> {val.purpose}  </Typography>
+                    <div title="Purpose Description" className="paneElDesc">{val.purposeDesc}
                     </div>
 
 
                     <div className="paneBtn">
-                    <Button variant="contained" color="secondary" onClick={this.props.onClickApprove.bind(this,"approve")}>APPROVE</Button>
-                    <Button color="secondary" onClick={this.props.onClickApprove.bind(this,"reject")}>REJECT</Button>
+                    <Button variant="contained" color="secondary" onClick={this.props.onClickApprove.bind(this,"Approved",val._id)}>APPROVE</Button>
+                    <Button color="secondary" onClick={this.props.onClickApprove.bind(this,"Rejected",val._id)}>REJECT</Button>
                     </div>
                 </div>
             </Box>

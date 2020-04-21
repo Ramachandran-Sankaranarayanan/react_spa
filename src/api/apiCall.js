@@ -10,48 +10,65 @@ const contextUrl={
     REGISTER:"register",
     SUBMIT_RIDER:"riders",
     RIDER_VALIDATION:"riders/verify",
-    OFFICIAL:"officials/{currentDate}",
-    RIDER_STATUS:"officials/confirmRiderStatus/{id}/{status}"
+    OFFICIAL:"officials",
+    RIDER_STATUS:"officials/confirmRiderStatus/{id}/{status}",
+    CONFIRM_RIDE:"officials/confirmRiderStatus"
 }
 
-const api = axios.create({
-    baseURL: "https://localhost/aplicacao",
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-});
 
-api.interceptors.request.use(async config => {
-    const token = localStorage.getItem("token");
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-});
-
-const headers= {
-    headers: { "Content-Type":"application/json",'Access-Control-Allow-Origin': '*' }
-}
 
 
 class ApiCall {
 
-    static get(key){
-       return api.get(apiRoot+contextUrl[key],headers).then(res=>{ return res;}).catch(err=>{
+    static getHeaders(){
+        const headers={ "Content-Type":"application/json"};
+        const token = localStorage.getItem("token");
+        if (token) {
+            headers["Authorization"] = 'Bearer '+token;
+        }
+        return  {headers};
+    }
+
+    static get(key){        
+       return axios.get(apiRoot+contextUrl[key],this.getHeaders()).then(res=>{ return res;}).catch(err=>{
         alert("Connection Error");
     });
     }
 
     static getWithData(key, data){
-        return api.get(apiRoot+contextUrl[key]+data,headers).then(res=>{ return res;}).catch(err=>{
+        return axios.get(apiRoot+contextUrl[key]+data,this.getHeaders()).then(res=>{ return res;}).catch(err=>{
+            console.log("ERROR",err.isAxisError,err.request,err.config,err.response,err.toJSON);
             alert("Connection Error");
-            return null;
         });
      }
 
    static post (key,data) {
-        return api.post(apiRoot+contextUrl[key],data,headers).then(res=>{ return res;}).catch(err=>{
+        return axios.post(apiRoot+contextUrl[key],data,this.getHeaders()).then(res=>{ return res;}).catch(err=>{
             console.log();
+            if(err.response.status == "401"){
+                alert("Invalid Credentails");
+            }else{
+                alert("Connection Error");
+            }
+
+        })
+    }
+
+    static put (key,data) {
+        return axios.put(apiRoot+contextUrl[key],data,this.getHeaders()).then(res=>{ return res;}).catch(err=>{
+            //console.log();
+            if(err.response.status == "401"){
+                alert("Invalid Credentails");
+            }else{
+                alert("Connection Error");
+            }
+
+        })
+    }
+
+    static putWIthData (key,append,data) {
+        return axios.put(apiRoot+contextUrl[key]+append,data,this.getHeaders()).then(res=>{ return res;}).catch(err=>{
+            //console.log();
             if(err.response.status == "401"){
                 alert("Invalid Credentails");
             }else{

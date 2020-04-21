@@ -30,14 +30,15 @@ export class Rider extends Component {
       destinationDistrict:""
     },
     purposeDesc:"",
-    requestedDate:new Date()
+    requestedDate:new Date(),
+    isLoggedIn:false
   }
 
 
   componentWillReceiveProps(next){
     console.log(next);
     if(next.postStatus){
-      alert("Status", next.postStatus);
+     this.setState({...this.state,isLoggedIn:true});
     }
   }
 
@@ -49,11 +50,12 @@ export class Rider extends Component {
   onSubmit=()=>{
     let val=this.state;
     let keys=Object.keys(val);
+    keys = keys.splice(keys.indexOf("isLoggedIn"),1);
     for(var i=0;i<keys.length;i++){
       var ky=keys[i];
       var itm=val[ky];
-      if(itm=="" || itm==null){
-        alert("All fields are mandatory");
+      if(itm==="" || itm===null){
+        alert("All fields are mandatory "+ky);
         return;
       }else if(ky=="vehicleNumber" && !itm.match("[A-Za-z]{2}[0-9]{2}[A-Za-z]{0,3}[0-9]{1,4}")){
         alert("Enter Valid Vehicle Number");
@@ -74,6 +76,9 @@ export class Rider extends Component {
 
 
   render() {
+    if(this.state.isLoggedIn){
+      return <div> Ride Request has been submitted Successfully </div>
+    }
     return (
       <Container maxWidth="sm">
       <Box my={4}>
